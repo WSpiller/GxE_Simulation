@@ -127,12 +127,8 @@ B<-ggplot(plot_data,aes(x=c(1:100),y=-log10(Fpvalue)))+
 
 Non_zeroGZ
 
-png(filename = "F_man.png",
-    width = 1600, height = 1200, units = "px", res=200,
-    bg = "white")
-
+png("Figure2A.png",width=4,height=3,units="in",res=200)
 B
-
 dev.off()
 
 
