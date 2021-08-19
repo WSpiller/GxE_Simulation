@@ -15,7 +15,7 @@ GZ_number<-10
 
 sampleGZ<-sample(1:Z_number,GZ_number, replace = FALSE)
 
-iterations<-100
+iterations<-1000
 
 it.GxEB<-matrix(rep(0, len=Z_number*iterations), nrow = Z_number)
 it.GxEse<-matrix(rep(0, len=Z_number*iterations), nrow = Z_number)
@@ -34,11 +34,11 @@ for(i in 1:iterations){
   print(i)
   
   gamma3<-rnorm(Z_number,0,0.01)
-
+  
   for(k in sampleGZ){
-    gamma3[k]<-rnorm(1,0,2)
+    gamma3[k]<-rnorm(1,2,2)
     while(abs(gamma3[k]) < 1){
-      gamma3[k]<-rnorm(1,0,2)
+      gamma3[k]<-rnorm(1,2,2)
     }
   }
   
@@ -104,14 +104,14 @@ for(i in 1:iterations){
     GxEB[j,3]<-t.model$diagnostics[1,3]
     GxEB[j,4]<-t.model$diagnostics[1,4]
   }
-
+  
   for(k in 1:Z_number){
-  
-  it.GxEB[,i]<-GxEB[,1]
-  it.GxEse[,i]<-GxEB[,2]
-  it.GxEF[,i]<-GxEB[,3]
-  it.GxEFp[,i]<-GxEB[,4]
-  
+    
+    it.GxEB[,i]<-GxEB[,1]
+    it.GxEse[,i]<-GxEB[,2]
+    it.GxEF[,i]<-GxEB[,3]
+    it.GxEFp[,i]<-GxEB[,4]
+    
   }
   
 }
@@ -141,7 +141,7 @@ for(k in 1:Z_number){
   res[k,2]<-mean(it.GxEse[k,])
   res[k,3]<-mean(it.GxEF[k,])
   res[k,4]<-mean(it.GxEFp[k,])
-
+  
 }
 
 
@@ -189,3 +189,13 @@ png("Figure2A.png",width=4,height=3,units="in",res=200)
 B
 dev.off()
 
+#mean values for MR-GENIUS and across valid instruments
+
+res[res$sig ==1,]
+mean(res[res$sig ==1,1])
+mean(res[res$sig ==1,1]) - 1.96*mean(res[res$sig ==1,2])
+mean(res[res$sig ==1,1]) + 1.96*mean(res[res$sig ==1,2])
+mean(res[res$sig ==1,3])
+
+mean(bpstat)
+mean(bp_pval)
