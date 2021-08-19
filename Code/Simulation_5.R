@@ -185,4 +185,11 @@ for(m in c(0,1,5,10,50,99)){
 
 all_out<-data.frame(G_beta,G_se,GxE_beta_all,GxE_se_all,GxE_beta_valid,GxE_se_valid,medFvec,bpb_out,bp_out)
 
+all_out$G_beta - 1.96 * all_out$G_se
+all_out$G_beta + 1.96 * all_out$G_se
 
+all_out$GxE_beta_all - 1.96 * all_out$GxE_se_all
+all_out$GxE_beta_all + 1.96 * all_out$GxE_se_all
+
+all_out$GxE_beta_valid - 1.96 * all_out$GxE_se_valid
+all_out$GxE_beta_valid + 1.96 * all_out$GxE_se_valid
