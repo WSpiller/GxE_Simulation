@@ -197,5 +197,9 @@ mean(res[res$sig ==1,1]) - 1.96*mean(res[res$sig ==1,2])
 mean(res[res$sig ==1,1]) + 1.96*mean(res[res$sig ==1,2])
 mean(res[res$sig ==1,3])
 
+mean(GENIUS_beta)
+mean(GENIUS_beta) - 1.96 * mean(GENIUS_se)
+mean(GENIUS_beta) + 1.96 * mean(GENIUS_se)
+
 mean(bpstat)
 mean(bp_pval)
